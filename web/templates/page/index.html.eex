@@ -1,0 +1,14 @@
+<div id="meeting"></div>
+<button id="become-moderator-button" name="button">Become Moderator</button>
+<button id="relinquish-moderator-button" name="button">Relinquish Moderator</button>
+<button id="request-stick-button" name="button">Request Stick</button>
+
+
+
+
+
+<div id="messages"></div>
+<input id="chat-input" type="text"></input>
+
+<button id="add-to-queue" name="button">Add To Queue</button>
+<div id="queue"></div>
