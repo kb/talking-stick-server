@@ -1,4 +1,5 @@
 defmodule User do
+  @derive [Poison.Encoder]
   defstruct [:id, :name, :email]
 
   # TODO: Should this be a protocol?

@@ -1,14 +1,7 @@
-<div id="meeting"></div>
 <button id="become-moderator-button" name="button">Become Moderator</button>
 <button id="relinquish-moderator-button" name="button">Relinquish Moderator</button>
-<button id="request-stick-button" name="button">Request Stick</button>
-
-
-
-
-
-<div id="messages"></div>
-<input id="chat-input" type="text"></input>
-
-<button id="add-to-queue" name="button">Add To Queue</button>
-<div id="queue"></div>
+<button id="request-stick-user1-button" name="button">Request Stick - User1</button>
+<button id="request-stick-user2-button" name="button">Request Stick - User2</button>
+<button id="request-stick-user3-button" name="button">Request Stick - User3</button>
+<button id="request-stick-user4-button" name="button">Request Stick - User4</button>
+<div id="meeting"></div>

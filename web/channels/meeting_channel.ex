@@ -1,6 +1,15 @@
 defmodule TalkingStick.MeetingChannel do
   use TalkingStick.Web, :channel
 
+  def setup(json) do
+    %{:meeting_id => meeting_id, :user => user} =
+      Poison.decode!(json, as: %{user: %User{}}, keys: :atoms!)
+
+    meeting_id = String.to_atom(meeting_id)
+    MeetingAgent.start_link(meeting_id)
+    [meeting_id, user]
+  end
+
   def join("meetings:lobby", payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
@@ -9,9 +18,9 @@ defmodule TalkingStick.MeetingChannel do
     end
   end
 
-  def handle_in("become_moderator", %{"meeting" => meeting_id, "user" => user}, socket) do
-    meeting_id = String.to_atom(meeting_id)
-    MeetingAgent.start_link(meeting_id)
+  def handle_in("become_moderator", json, socket) do
+    [meeting_id, user] = setup(json)
+
     {:ok, meeting} = MeetingAgent.become_moderator(meeting_id, user)
     broadcast! socket, "meeting", %{meeting: meeting}
     {:noreply, socket}
@@ -22,9 +31,9 @@ defmodule TalkingStick.MeetingChannel do
     {:noreply, socket}
   end
 
-  def handle_in("relinquish_moderator", %{"meeting" => meeting_id, "user" => user}, socket) do
-    meeting_id = String.to_atom(meeting_id)
-    MeetingAgent.start_link(meeting_id)
+  def handle_in("relinquish_moderator", json, socket) do
+    [meeting_id, user] = setup(json)
+
     {:ok, meeting} = MeetingAgent.relinquish_moderator(meeting_id, user)
     broadcast! socket, "meeting", %{meeting: meeting}
     {:noreply, socket}
@@ -35,9 +44,9 @@ defmodule TalkingStick.MeetingChannel do
     {:noreply, socket}
   end
 
-  def handle_in("request_stick", %{"meeting" => meeting_id, "user" => user}, socket) do
-    meeting_id = String.to_atom(meeting_id)
-    MeetingAgent.start_link(meeting_id)
+  def handle_in("request_stick", json, socket) do
+    [meeting_id, user] = setup(json)
+
     {:ok, meeting} = MeetingAgent.request_stick(meeting_id, user)
     broadcast! socket, "meeting", %{meeting: meeting}
     {:noreply, socket}

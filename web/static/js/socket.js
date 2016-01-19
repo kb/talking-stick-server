@@ -57,7 +57,10 @@ let channel = socket.channel("meetings:lobby", {})
 let meeting = $("#meeting")
 let becomeModeratorButton = $("#become-moderator-button")
 let relinquishModeratorButton = $("#relinquish-moderator-button")
-let requestStickButton = $("#request-stick-button")
+let requestStickUser1Button = $("#request-stick-user1-button")
+let requestStickUser2Button = $("#request-stick-user2-button")
+let requestStickUser3Button = $("#request-stick-user3-button")
+let requestStickUser4Button = $("#request-stick-user4-button")
 
 let meeting_id = "123456"
 let moderator_id = Math.random().toString(36).substr(2, 5)
@@ -67,52 +70,81 @@ let user3_id = Math.random().toString(36).substr(2, 5)
 let user4_id = Math.random().toString(36).substr(2, 5)
 
 becomeModeratorButton.on("click", event => {
-  channel.push("become_moderator", {meeting: meeting_id, user: {id: moderator_id, name: "moderator", email: "moderator@example.com" }})
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: moderator_id,
+      name: "moderator",
+      email: "moderator@example.com"
+    }
+  })
+  channel.push("become_moderator", meeting)
 })
 
 relinquishModeratorButton.on("click", event => {
-  channel.push("relinquish_moderator", {meeting: meeting_id, user: {id: moderator_id, name: "moderator", email: "moderator@example.com" }})
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: moderator_id,
+      name: "moderator",
+      email: "moderator@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
 })
 
-requestStickButton.on("click", event => {
-  channel.push("request_stick", {meeting: meeting_id, user: {id: user1_id, name: "user1", email: "user1@example.com" }})
+requestStickUser1Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user1_id,
+      name: "user1",
+      email: "user1@example.com"
+    }
+  })
+  channel.push("request_stick", meeting)
+})
+
+requestStickUser2Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user2_id,
+      name: "user2",
+      email: "user2@example.com"
+    }
+  })
+  channel.push("request_stick", meeting)
+})
+
+requestStickUser3Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user3_id,
+      name: "user3",
+      email: "user3@example.com"
+    }
+  })
+  channel.push("request_stick", meeting)
+})
+
+requestStickUser4Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user4_id,
+      name: "user4",
+      email: "user4@example.com"
+    }
+  })
+  channel.push("request_stick", meeting)
 })
 
 channel.on("meeting", payload => {
   console.log(payload)
-  messagesContainer.append(`<br/>${JSON.stringify(payload)}`)
-})
-
-
-
-
-
-
-
-// Now that you are connected, you can join channels with a topic:
-let chatInput = $("#chat-input")
-let messagesContainer = $("#messages")
-let queueContainer = $("#queue")
-let addToQueueButton = $("#add-to-queue")
-
-chatInput.on("keypress", event => {
-  if(event.keyCode === 13){
-    channel.push("new_msg", {body: chatInput.val()})
-    chatInput.val("")
-  }
-})
-
-addToQueueButton.on("click", event => {
-  channel.push("add_to_queue", {body: Math.random().toString(36).substr(2, 5)})
-})
-
-channel.on("new_msg", payload => {
-  messagesContainer.append(`<br/>[${Date()}] ${payload.body}`)
-})
-
-// My edits
-channel.on("add_to_queue", payload => {
-  queueContainer.append(`<br/>[${Date()}] ${payload.body}`)
+  meeting.append(`<br/>${JSON.stringify(payload)}`)
+  meeting.append(`<br/>`)
 })
 
 channel.join()
