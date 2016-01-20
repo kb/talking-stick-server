@@ -24,7 +24,7 @@ defmodule MeetingAgent do
   @doc "Give up moderator capabilities."
   def relinquish_moderator(id, user) do
     Agent.get_and_update(id, fn meeting ->
-      updated_meeting = Meeting.reset_speaker_and_queue(meeting, user)
+      updated_meeting = Meeting.relinquish_moderator(meeting, user)
       {{:ok, updated_meeting}, updated_meeting}
     end)
   end

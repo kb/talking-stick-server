@@ -200,7 +200,7 @@ resetSpeakerAndQueueUser1Button.on("click", event => {
       email: "user1@example.com"
     }
   })
-  channel.push("relinquish_moderator", meeting)
+  channel.push("reset_speaker_and_queue", meeting)
 })
 
 resetSpeakerAndQueueUser2Button.on("click", event => {
@@ -212,7 +212,7 @@ resetSpeakerAndQueueUser2Button.on("click", event => {
       email: "user2@example.com"
     }
   })
-  channel.push("relinquish_moderator", meeting)
+  channel.push("reset_speaker_and_queue", meeting)
 })
 
 resetSpeakerAndQueueUser3Button.on("click", event => {
@@ -224,7 +224,7 @@ resetSpeakerAndQueueUser3Button.on("click", event => {
       email: "user3@example.com"
     }
   })
-  channel.push("relinquish_moderator", meeting)
+  channel.push("reset_speaker_and_queue", meeting)
 })
 
 resetSpeakerAndQueueUser4Button.on("click", event => {
@@ -236,7 +236,7 @@ resetSpeakerAndQueueUser4Button.on("click", event => {
       email: "user4@example.com"
     }
   })
-  channel.push("relinquish_moderator", meeting)
+  channel.push("reset_speaker_and_queue", meeting)
 })
 
 requestStickUser1Button.on("click", event => {
