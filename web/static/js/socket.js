@@ -69,6 +69,11 @@ let relinquishModeratorUser2Button = $("#relinquish-moderator-user2-button")
 let relinquishModeratorUser3Button = $("#relinquish-moderator-user3-button")
 let relinquishModeratorUser4Button = $("#relinquish-moderator-user4-button")
 
+let resetSpeakerAndQueueUser1Button = $("#reset-speaker-and-queue-user1-button")
+let resetSpeakerAndQueueUser2Button = $("#reset-speaker-and-queue-user2-button")
+let resetSpeakerAndQueueUser3Button = $("#reset-speaker-and-queue-user3-button")
+let resetSpeakerAndQueueUser4Button = $("#reset-speaker-and-queue-user4-button")
+
 let requestStickUser1Button = $("#request-stick-user1-button")
 let requestStickUser2Button = $("#request-stick-user2-button")
 let requestStickUser3Button = $("#request-stick-user3-button")
@@ -175,6 +180,54 @@ relinquishModeratorUser3Button.on("click", event => {
 })
 
 relinquishModeratorUser4Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user4_id,
+      name: "user4",
+      email: "user4@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+resetSpeakerAndQueueUser1Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user1_id,
+      name: "user1",
+      email: "user1@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+resetSpeakerAndQueueUser2Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user2_id,
+      name: "user2",
+      email: "user2@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+resetSpeakerAndQueueUser3Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user3_id,
+      name: "user3",
+      email: "user3@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+resetSpeakerAndQueueUser4Button.on("click", event => {
   let meeting = JSON.stringify({
     meeting_id: meeting_id,
     user:{

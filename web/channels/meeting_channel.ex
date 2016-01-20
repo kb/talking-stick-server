@@ -44,6 +44,19 @@ defmodule TalkingStick.MeetingChannel do
     {:noreply, socket}
   end
 
+  def handle_in("reset_speaker_and_queue", json, socket) do
+    [meeting_id, user] = setup(json)
+
+    {:ok, meeting} = MeetingAgent.reset_speaker_and_queue(meeting_id, user)
+    broadcast! socket, "meeting", %{meeting: meeting}
+    {:noreply, socket}
+  end
+
+  def handle_out("reset_speaker_and_queue", payload, socket) do
+    push socket, "meeting", payload
+    {:noreply, socket}
+  end
+
   def handle_in("request_stick", json, socket) do
     [meeting_id, user] = setup(json)
 
