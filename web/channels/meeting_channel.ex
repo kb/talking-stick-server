@@ -57,6 +57,19 @@ defmodule TalkingStick.MeetingChannel do
     {:noreply, socket}
   end
 
+  def handle_in("unrequest_stick", json, socket) do
+    [meeting_id, user] = setup(json)
+
+    {:ok, meeting} = MeetingAgent.unrequest_stick(meeting_id, user)
+    broadcast! socket, "meeting", %{meeting: meeting}
+    {:noreply, socket}
+  end
+
+  def handle_out("unrequest_stick", payload, socket) do
+    push socket, "meeting", payload
+    {:noreply, socket}
+  end
+
   def handle_in("relinquish_stick", json, socket) do
     [meeting_id, user] = setup(json)
 

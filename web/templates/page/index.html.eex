@@ -1,36 +1,43 @@
-<fieldset>
-  <legend>User 1</legend>
-  <button id="become-moderator-user1-button" name="button">Become Moderator</button>
-  <button id="relinquish-moderator-user1-button" name="button">Relinquish Moderator</button>
-  <button id="request-stick-user1-button" name="button">Request Stick</button>
-  <button id="relinquish-stick-user1-button" name="button">Relinquish Stick</button>
-</fieldset>
+<div id="fixtures">
+  <!-- Not using a form tag to avoid browser submit behavior -->
+  <fieldset>
+    <legend>User 1</legend>
+    <button id="become-moderator-user1-button" name="button">Become Moderator</button>
+    <button id="relinquish-moderator-user1-button" name="button">Relinquish Moderator</button>
+    <button id="request-stick-user1-button" name="button">Request Stick</button>
+    <button id="unrequest-stick-user1-button" name="button">Unrequest Stick</button>
+    <button id="relinquish-stick-user1-button" name="button">Relinquish Stick</button>
+  </fieldset>
 
-<fieldset>
-  <legend>User 2</legend>
-  <button id="become-moderator-user2-button" name="button">Become Moderator</button>
-  <button id="relinquish-moderator-user2-button" name="button">Relinquish Moderator</button>
-  <button id="request-stick-user2-button" name="button">Request Stick</button>
-  <button id="relinquish-stick-user2-button" name="button">Relinquish Stick</button>
-</fieldset>
+  <fieldset>
+    <legend>User 2</legend>
+    <button id="become-moderator-user2-button" name="button">Become Moderator</button>
+    <button id="relinquish-moderator-user2-button" name="button">Relinquish Moderator</button>
+    <button id="request-stick-user2-button" name="button">Request Stick</button>
+    <button id="unrequest-stick-user2-button" name="button">Unrequest Stick</button>
+    <button id="relinquish-stick-user2-button" name="button">Relinquish Stick</button>
+  </fieldset>
 
-<fieldset>
-  <legend>User 3</legend>
-  <button id="become-moderator-user3-button" name="button">Become Moderator</button>
-  <button id="relinquish-moderator-user3-button" name="button">Relinquish Moderator</button>
-  <button id="request-stick-user3-button" name="button">Request Stick</button>
-  <button id="relinquish-stick-user3-button" name="button">Relinquish Stick</button>
-</fieldset>
+  <fieldset>
+    <legend>User 3</legend>
+    <button id="become-moderator-user3-button" name="button">Become Moderator</button>
+    <button id="relinquish-moderator-user3-button" name="button">Relinquish Moderator</button>
+    <button id="request-stick-user3-button" name="button">Request Stick</button>
+    <button id="unrequest-stick-user3-button" name="button">Unrequest Stick</button>
+    <button id="relinquish-stick-user3-button" name="button">Relinquish Stick</button>
+  </fieldset>
 
-<fieldset>
-  <legend>User 4</legend>
-  <button id="become-moderator-user4-button" name="button">Become Moderator</button>
-  <button id="relinquish-moderator-user4-button" name="button">Relinquish Moderator</button>
-  <button id="request-stick-user4-button" name="button">Request Stick</button>
-  <button id="relinquish-stick-user4-button" name="button">Relinquish Stick</button>
-</fieldset>
+  <fieldset>
+    <legend>User 4</legend>
+    <button id="become-moderator-user4-button" name="button">Become Moderator</button>
+    <button id="relinquish-moderator-user4-button" name="button">Relinquish Moderator</button>
+    <button id="request-stick-user4-button" name="button">Request Stick</button>
+    <button id="unrequest-stick-user4-button" name="button">Unrequest Stick</button>
+    <button id="relinquish-stick-user4-button" name="button">Relinquish Stick</button>
+  </fieldset>
+</div>
 
-<dl>
+<dl id="meeting">
   <dt>Moderator:</dt>
   <dd id="moderator"></dd>
   <dt>Speaker:</dt>

@@ -47,6 +47,11 @@ defmodule Meeting do
     end
   end
 
+  @doc "Remove user from the queue"
+  def unrequest_stick(meeting, user) do
+    %{meeting | queue: List.delete(meeting.queue, user)}
+  end
+
   # TODO: if not the speaker, but in queue. Remove from queue.
   @doc "Relinquish stick to the head of the queue and update the queue to tail"
   def relinquish_stick(meeting, %{:id => user_id}, [head|tail]) do

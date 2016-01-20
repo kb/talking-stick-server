@@ -62,7 +62,7 @@ let queue = $("#queue")
 let becomeModeratorUser1Button = $("#become-moderator-user1-button")
 let becomeModeratorUser2Button = $("#become-moderator-user2-button")
 let becomeModeratorUser3Button = $("#become-moderator-user3-button")
-let becomeModeratorUser4Button = $("#become-moderator-user-4button")
+let becomeModeratorUser4Button = $("#become-moderator-user4-button")
 
 let relinquishModeratorUser1Button = $("#relinquish-moderator-user1-button")
 let relinquishModeratorUser2Button = $("#relinquish-moderator-user2-button")
@@ -73,6 +73,11 @@ let requestStickUser1Button = $("#request-stick-user1-button")
 let requestStickUser2Button = $("#request-stick-user2-button")
 let requestStickUser3Button = $("#request-stick-user3-button")
 let requestStickUser4Button = $("#request-stick-user4-button")
+
+let unrequestStickUser1Button = $("#unrequest-stick-user1-button")
+let unrequestStickUser2Button = $("#unrequest-stick-user2-button")
+let unrequestStickUser3Button = $("#unrequest-stick-user3-button")
+let unrequestStickUser4Button = $("#unrequest-stick-user4-button")
 
 let relinquishStickUser1Button = $("#relinquish-stick-user1-button")
 let relinquishStickUser2Button = $("#relinquish-stick-user2-button")
@@ -229,6 +234,54 @@ requestStickUser4Button.on("click", event => {
   channel.push("request_stick", meeting)
 })
 
+unrequestStickUser1Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user1_id,
+      name: "user1",
+      email: "user1@example.com"
+    }
+  })
+  channel.push("unrequest_stick", meeting)
+})
+
+unrequestStickUser2Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user2_id,
+      name: "user2",
+      email: "user2@example.com"
+    }
+  })
+  channel.push("unrequest_stick", meeting)
+})
+
+unrequestStickUser3Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user3_id,
+      name: "user3",
+      email: "user3@example.com"
+    }
+  })
+  channel.push("unrequest_stick", meeting)
+})
+
+unrequestStickUser4Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user4_id,
+      name: "user4",
+      email: "user4@example.com"
+    }
+  })
+  channel.push("unrequest_stick", meeting)
+})
+
 relinquishStickUser1Button.on("click", event => {
   let meeting = JSON.stringify({
     meeting_id: meeting_id,
@@ -276,7 +329,6 @@ relinquishStickUser4Button.on("click", event => {
   })
   channel.push("relinquish_stick", meeting)
 })
-
 
 channel.on("meeting", payload => {
   console.log(payload)

@@ -40,9 +40,15 @@ defmodule MeetingAgent do
   @doc "Request the stick"
   def request_stick(id, user) do
     Agent.get_and_update(id, fn meeting ->
-      IO.puts "speaker"
-      IO.puts inspect(meeting.speaker)
       updated_meeting = Meeting.request_stick(meeting, user, meeting.speaker)
+      {{:ok, updated_meeting}, updated_meeting}
+    end)
+  end
+
+  @doc "Unrequest the stick"
+  def unrequest_stick(id, user) do
+    Agent.get_and_update(id, fn meeting ->
+      updated_meeting = Meeting.unrequest_stick(meeting, user)
       {{:ok, updated_meeting}, updated_meeting}
     end)
   end

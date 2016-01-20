@@ -76,3 +76,13 @@ form.link, form.button {
     border-bottom: 0;
   }
 }
+
+#fixtures {
+  float: left;
+  width: 45%;
+}
+
+#meeting {
+  float: right;
+  width: 45%;
+}
