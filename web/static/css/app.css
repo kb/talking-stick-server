@@ -79,10 +79,15 @@ form.link, form.button {
 
 #fixtures {
   float: left;
-  width: 45%;
+  width: 49%;
 }
 
 #meeting {
   float: right;
-  width: 45%;
+  width: 49%;
+}
+
+button {
+  margin: 2px;
+  width: 80px;
 }
