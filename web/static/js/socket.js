@@ -55,39 +55,127 @@ socket.connect()
 
 let channel = socket.channel("meetings:lobby", {})
 let meeting = $("#meeting")
-let becomeModeratorButton = $("#become-moderator-button")
-let relinquishModeratorButton = $("#relinquish-moderator-button")
+let moderator = $("#moderator")
+let speaker = $("#speaker")
+let queue = $("#queue")
+
+let becomeModeratorUser1Button = $("#become-moderator-user1-button")
+let becomeModeratorUser2Button = $("#become-moderator-user2-button")
+let becomeModeratorUser3Button = $("#become-moderator-user3-button")
+let becomeModeratorUser4Button = $("#become-moderator-user-4button")
+
+let relinquishModeratorUser1Button = $("#relinquish-moderator-user1-button")
+let relinquishModeratorUser2Button = $("#relinquish-moderator-user2-button")
+let relinquishModeratorUser3Button = $("#relinquish-moderator-user3-button")
+let relinquishModeratorUser4Button = $("#relinquish-moderator-user4-button")
+
 let requestStickUser1Button = $("#request-stick-user1-button")
 let requestStickUser2Button = $("#request-stick-user2-button")
 let requestStickUser3Button = $("#request-stick-user3-button")
 let requestStickUser4Button = $("#request-stick-user4-button")
 
+let relinquishStickUser1Button = $("#relinquish-stick-user1-button")
+let relinquishStickUser2Button = $("#relinquish-stick-user2-button")
+let relinquishStickUser3Button = $("#relinquish-stick-user3-button")
+let relinquishStickUser4Button = $("#relinquish-stick-user4-button")
+
 let meeting_id = "123456"
-let moderator_id = Math.random().toString(36).substr(2, 5)
 let user1_id = Math.random().toString(36).substr(2, 5)
 let user2_id = Math.random().toString(36).substr(2, 5)
 let user3_id = Math.random().toString(36).substr(2, 5)
 let user4_id = Math.random().toString(36).substr(2, 5)
 
-becomeModeratorButton.on("click", event => {
+becomeModeratorUser1Button.on("click", event => {
   let meeting = JSON.stringify({
     meeting_id: meeting_id,
     user:{
-      id: moderator_id,
-      name: "moderator",
-      email: "moderator@example.com"
+      id: user1_id,
+      name: "user1",
+      email: "user1@example.com"
     }
   })
   channel.push("become_moderator", meeting)
 })
 
-relinquishModeratorButton.on("click", event => {
+becomeModeratorUser2Button.on("click", event => {
   let meeting = JSON.stringify({
     meeting_id: meeting_id,
     user:{
-      id: moderator_id,
-      name: "moderator",
-      email: "moderator@example.com"
+      id: user2_id,
+      name: "user2",
+      email: "user2@example.com"
+    }
+  })
+  channel.push("become_moderator", meeting)
+})
+
+becomeModeratorUser3Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user3_id,
+      name: "user3",
+      email: "user3@example.com"
+    }
+  })
+  channel.push("become_moderator", meeting)
+})
+
+becomeModeratorUser4Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user4_id,
+      name: "user4",
+      email: "user4@example.com"
+    }
+  })
+  channel.push("become_moderator", meeting)
+})
+
+relinquishModeratorUser1Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user1_id,
+      name: "user1",
+      email: "user1@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+relinquishModeratorUser2Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user2_id,
+      name: "user2",
+      email: "user2@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+relinquishModeratorUser3Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user3_id,
+      name: "user3",
+      email: "user3@example.com"
+    }
+  })
+  channel.push("relinquish_moderator", meeting)
+})
+
+relinquishModeratorUser4Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user4_id,
+      name: "user4",
+      email: "user4@example.com"
     }
   })
   channel.push("relinquish_moderator", meeting)
@@ -141,10 +229,60 @@ requestStickUser4Button.on("click", event => {
   channel.push("request_stick", meeting)
 })
 
+relinquishStickUser1Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user1_id,
+      name: "user1",
+      email: "user1@example.com"
+    }
+  })
+  channel.push("relinquish_stick", meeting)
+})
+
+relinquishStickUser2Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user2_id,
+      name: "user2",
+      email: "user2@example.com"
+    }
+  })
+  channel.push("relinquish_stick", meeting)
+})
+
+relinquishStickUser3Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user3_id,
+      name: "user3",
+      email: "user3@example.com"
+    }
+  })
+  channel.push("relinquish_stick", meeting)
+})
+
+relinquishStickUser4Button.on("click", event => {
+  let meeting = JSON.stringify({
+    meeting_id: meeting_id,
+    user:{
+      id: user4_id,
+      name: "user4",
+      email: "user4@example.com"
+    }
+  })
+  channel.push("relinquish_stick", meeting)
+})
+
+
 channel.on("meeting", payload => {
   console.log(payload)
-  meeting.append(`<br/>${JSON.stringify(payload)}`)
-  meeting.append(`<br/>`)
+  moderator.text(`${JSON.stringify(payload.meeting.moderator)}`)
+  speaker.text(`${JSON.stringify(payload.meeting.speaker)}`)
+  queue.text(`${JSON.stringify(payload.meeting.queue)}`)
 })
 
 channel.join()
