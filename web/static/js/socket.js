@@ -53,7 +53,13 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
-let channel = socket.channel("meetings:lobby", {})
+let meeting_id = "123456"
+let user1_id = "1"
+let user2_id = "2"
+let user3_id = "3"
+let user4_id = "4"
+
+let channel = socket.channel(`meetings:${meeting_id}`, {})
 let meeting = $("#meeting")
 let moderator = $("#moderator")
 let speaker = $("#speaker")
@@ -88,12 +94,6 @@ let relinquishStickUser1Button = $("#relinquish-stick-user1-button")
 let relinquishStickUser2Button = $("#relinquish-stick-user2-button")
 let relinquishStickUser3Button = $("#relinquish-stick-user3-button")
 let relinquishStickUser4Button = $("#relinquish-stick-user4-button")
-
-let meeting_id = "123456"
-let user1_id = Math.random().toString(36).substr(2, 5)
-let user2_id = Math.random().toString(36).substr(2, 5)
-let user3_id = Math.random().toString(36).substr(2, 5)
-let user4_id = Math.random().toString(36).substr(2, 5)
 
 becomeModeratorUser1Button.on("click", event => {
   let meeting = JSON.stringify({
