@@ -19,16 +19,6 @@ defmodule TalkingStick.MeetingChannel do
     [meeting_id, user]
   end
 
-  # handles the special `"lobby"` subtopic
-  # TODO not sure we want this?
-  def join("meetings:lobby", payload, socket) do
-    if authorized?("lobby", payload) do
-      {:ok, socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
-  end
-
   # handles any other subtopic as the room ID, for example `"rooms:12"`, `"rooms:34"`
   # TODO Do we want this to "auth" the meeting request?
   def join("meetings:" <> meeting_id, auth_message, socket) do
@@ -39,7 +29,6 @@ defmodule TalkingStick.MeetingChannel do
     end
   end
 
-  # TODO: These should only broadcast to "meeting" <> meeting_id
   def handle_in("become_moderator", json, socket) do
     [meeting_id, user] = setup(json)
 
