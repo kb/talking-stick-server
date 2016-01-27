@@ -9,7 +9,7 @@ defmodule MeetingAgent do
   @doc "Get the meeting struct"
   def get(id) do
     Agent.get(id, fn meeting ->
-      meeting
+      {:ok, meeting}
     end)
   end
 

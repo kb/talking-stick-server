@@ -2,6 +2,7 @@ defmodule TalkingStick.MeetingChannel do
   use TalkingStick.Web, :channel
 
   intercept [
+    "sync",
     "become_moderator",
     "relinquish_moderator",
     "reset_speaker_and_queue",
@@ -27,6 +28,17 @@ defmodule TalkingStick.MeetingChannel do
     else
       {:error, %{reason: "unauthorized"}}
     end
+  end
+
+  def handle_in("sync", json, socket) do
+    # TODO: This is a bit different than setup(json). Dry it up?
+    %{:meeting_id => meeting_id} = Poison.decode!(json, keys: :atoms!)
+    meeting_id = String.to_atom(meeting_id)
+    MeetingAgent.start_link(meeting_id)
+
+    {:ok, meeting} = MeetingAgent.get(meeting_id)
+    broadcast! socket, "meeting", %{meeting: meeting}
+    {:noreply, socket}
   end
 
   def handle_in("become_moderator", json, socket) do
@@ -74,6 +86,11 @@ defmodule TalkingStick.MeetingChannel do
 
     {:ok, meeting} = MeetingAgent.relinquish_stick(meeting_id, user)
     broadcast! socket, "meeting", %{meeting: meeting}
+    {:noreply, socket}
+  end
+
+  def handle_out("sync", payload, socket) do
+    push socket, "meeting", payload
     {:noreply, socket}
   end
 

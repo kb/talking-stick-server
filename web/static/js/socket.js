@@ -395,7 +395,13 @@ channel.on("meeting", payload => {
 })
 
 channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("ok", resp => {
+    console.log("Joined successfully", resp)
+    let meeting = JSON.stringify({
+      meeting_id: meeting_id
+    })
+    channel.push("sync", meeting)
+  })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket
