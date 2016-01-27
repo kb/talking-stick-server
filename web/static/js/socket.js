@@ -53,13 +53,17 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 
 socket.connect()
 
-let meeting_id = "123456"
+// This is super jank. Just assume we have a query param and the value for the key
+// is the id of the meeting we want to connect to. Really just for testing that channels
+// are getting segmented on the broadcast/push from the server
+let meeting_id = window.location.search.split('=')[1]
 let user1_id = "1"
 let user2_id = "2"
 let user3_id = "3"
 let user4_id = "4"
 
-let channel = socket.channel(`meetings:${meeting_id}`, {})
+let channel_name = `meetings:${meeting_id}`
+let channel = socket.channel(channel_name, {})
 let meeting = $("#meeting")
 let moderator = $("#moderator")
 let speaker = $("#speaker")
