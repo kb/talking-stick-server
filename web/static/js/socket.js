@@ -69,6 +69,23 @@ let moderator = $("#moderator")
 let speaker = $("#speaker")
 let queue = $("#queue")
 
+channel.on("meeting", payload => {
+  console.log(payload)
+  moderator.text(`${JSON.stringify(payload.meeting.moderator)}`)
+  speaker.text(`${JSON.stringify(payload.meeting.speaker)}`)
+  queue.text(`${JSON.stringify(payload.meeting.queue)}`)
+})
+
+channel.join()
+  .receive("ok", resp => {
+    console.log("Joined successfully", resp)
+    let meeting = JSON.stringify({
+      meeting_id: meeting_id
+    })
+    channel.push("sync", meeting)
+  })
+  .receive("error", resp => { console.log("Unable to join", resp) })
+
 let becomeModeratorUser1Button = $("#become-moderator-user1-button")
 let becomeModeratorUser2Button = $("#become-moderator-user2-button")
 let becomeModeratorUser3Button = $("#become-moderator-user3-button")
@@ -386,22 +403,5 @@ relinquishStickUser4Button.on("click", event => {
   })
   channel.push("relinquish_stick", meeting)
 })
-
-channel.on("meeting", payload => {
-  console.log(payload)
-  moderator.text(`${JSON.stringify(payload.meeting.moderator)}`)
-  speaker.text(`${JSON.stringify(payload.meeting.speaker)}`)
-  queue.text(`${JSON.stringify(payload.meeting.queue)}`)
-})
-
-channel.join()
-  .receive("ok", resp => {
-    console.log("Joined successfully", resp)
-    let meeting = JSON.stringify({
-      meeting_id: meeting_id
-    })
-    channel.push("sync", meeting)
-  })
-  .receive("error", resp => { console.log("Unable to join", resp) })
 
 export default socket
