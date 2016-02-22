@@ -43,6 +43,13 @@ defmodule Meeting do
     Enum.any?(meeting.queue, fn(queue_user) -> queue_user.id  == user.id end) do
       meeting
     else
+      # From Elixir in action:
+      # "In general, you should avoid adding elements to the end of a list.
+      # Lists are most efficient when new elements are pushed to the top, or
+      # popped from it."
+      #
+      # Maybe this should change? I don't expect the list to be that long, so O(n)
+      # should be okay here (shrug)
       %{meeting | queue: List.insert_at(meeting.queue, -1, user)}
     end
   end
