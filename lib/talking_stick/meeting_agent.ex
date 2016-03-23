@@ -1,6 +1,6 @@
 defmodule MeetingAgent do
 
-  # TODO: I'm not sure if it should be start or start_link when in a phoenix operating evn
+  # TODO: I'm not sure if it should be start or start_link when in a phoenix operating env
   @doc "Start a MeetingAgent for a given id and link to current process"
   def start_link(id) do
     Agent.start_link(fn -> %Meeting{:queue => []} end, name: id)
