@@ -1,9 +1,12 @@
 defmodule MeetingAgent do
+  require Logger
 
-  # TODO: I'm not sure if it should be start or start_link when in a phoenix operating env
   @doc "Start a MeetingAgent for a given id and link to current process"
-  def start_link(id) do
-    Agent.start_link(fn -> %Meeting{:queue => []} end, name: id)
+  def start(id) do
+    Logger.debug("MeetingAgent start/1 id #{id}")
+    # We use `start/2` instead of `start_link/2` to avoid the Agent getting
+    # killed off if the originating requestor terminates its socket connection
+    Agent.start(fn -> %Meeting{:queue => []} end, name: id)
   end
 
   @doc "Get the meeting struct"

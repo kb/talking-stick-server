@@ -1,5 +1,6 @@
 defmodule TalkingStick.MeetingChannel do
   use TalkingStick.Web, :channel
+  require Logger
 
   intercept [
     "sync",
@@ -23,7 +24,7 @@ defmodule TalkingStick.MeetingChannel do
   # TODO Should move decode/1 from all the handle_in/3 to here. Will require client changes to pass through some things in the auth_message
   def join("meetings:" <> meeting_id, auth_message, socket) do
     if authorized?(meeting_id, auth_message) do
-      MeetingAgent.start_link(String.to_atom(meeting_id))
+      MeetingAgent.start(String.to_atom(meeting_id))
       {:ok, socket}
     else
       {:error, %{reason: "unauthorized"}}
@@ -31,10 +32,8 @@ defmodule TalkingStick.MeetingChannel do
   end
 
   def handle_in("sync", json, socket) do
-    # TODO: This is a bit different than decode(json). Dry it up?
     %{:meeting_id => meeting_id} = Poison.decode!(json, keys: :atoms!)
     meeting_id = String.to_atom(meeting_id)
-    MeetingAgent.start_link(meeting_id)
 
     {:ok, meeting} = MeetingAgent.get(meeting_id)
     broadcast! socket, "meeting", %{meeting: meeting}
@@ -131,5 +130,10 @@ defmodule TalkingStick.MeetingChannel do
     else
       false
     end
+  end
+
+  def terminate(reason, _socket) do
+    Logger.debug("TalkingStick.MeetingChannel terminate/2 #{inspect reason}")
+    :ok
   end
 end
