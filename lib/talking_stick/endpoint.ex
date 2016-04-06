@@ -33,7 +33,7 @@ defmodule TalkingStick.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_talking_stick_key",
-    signing_salt: "o0iisM3s"
+    signing_salt: System.get_env("SIGNING_SALT")
 
   plug TalkingStick.Router
 end

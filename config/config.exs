@@ -9,7 +9,7 @@ use Mix.Config
 config :talking_stick, TalkingStick.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "DRxPZkUKOl9orCQTdnURC70WSJrBOYSfSANH+4KiM+mxTKAY8j16ewX0vqj9qLnp",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: TalkingStick.PubSub,
            adapter: Phoenix.PubSub.PG2]
