@@ -1,19 +1,13 @@
 # TalkingStick
 
-To start your Phoenix app:
+The Talking Stick server is written in [Elixir](http://elixir-lang.org/) using the
+[Phoenix Framework](http://www.phoenixframework.org/) with [Phoenix Channels](https://hexdocs.pm
 
-  1. Install dependencies with `mix deps.get`
-  2. Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  3. Start Phoenix endpoint with `mix phoenix.server`
+## Getting Started
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+1. `mix deps.get` (Answer `Y` if prompted with `Shall I install Hex? [Yn]`)
+1. `npm install`
+1. `mix phoenix.server` (Answer `Y` if prompted with `Shall I install rebar? [Yn]`)
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
-
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+Now you can visit [`localhost:4000?meeting_id=123456`](http://localhost:4000?meeting_id=123456) in your browser
+to try out a test meeting.
