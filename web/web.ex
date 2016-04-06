@@ -30,9 +30,9 @@ defmodule TalkingStick.Web do
     quote do
       use Phoenix.Controller
 
-      alias TalkingStick.Repo
-      import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      # alias TalkingStick.Repo
+      # import Ecto
+      # import Ecto.Query, only: [from: 1, from: 2]
 
       import TalkingStick.Router.Helpers
       import TalkingStick.Gettext
@@ -65,9 +65,9 @@ defmodule TalkingStick.Web do
     quote do
       use Phoenix.Channel
 
-      alias TalkingStick.Repo
-      import Ecto
-      import Ecto.Query, only: [from: 1, from: 2]
+      # alias TalkingStick.Repo
+      # import Ecto
+      # import Ecto.Query, only: [from: 1, from: 2]
       import TalkingStick.Gettext
     end
   end

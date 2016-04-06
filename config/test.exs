@@ -10,10 +10,10 @@ config :talking_stick, TalkingStick.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :talking_stick, TalkingStick.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "talking_stick_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+# config :talking_stick, TalkingStick.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   username: "postgres",
+#   password: "postgres",
+#   database: "talking_stick_test",
+#   hostname: "localhost",
+#   pool: Ecto.Adapters.SQL.Sandbox

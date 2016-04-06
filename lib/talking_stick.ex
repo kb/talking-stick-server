@@ -10,7 +10,7 @@ defmodule TalkingStick do
       # Start the endpoint when the application starts
       supervisor(TalkingStick.Endpoint, []),
       # Start the Ecto repository
-      supervisor(TalkingStick.Repo, []),
+      # supervisor(TalkingStick.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(TalkingStick.Worker, [arg1, arg2, arg3]),
     ]
